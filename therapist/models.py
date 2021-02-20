@@ -1,11 +1,10 @@
 from django.db import models
 
 
-class Metod(models.Model):
-    name = models.TextField()
+class Psychotherapists(models.Model):
+    name = models.CharField(max_length=255)
+    photo = models.TextField(default="N/A")
+    metod = models.TextField(default="N/A")
 
-
-class Therapist(models.Model):
-    name = models.TextField()
-    photo = models.TextField()
-    metod = models.ForeignKey("Metod", on_delete=models.SET_NULL, null=True)
+    def __str__(self):
+        return self.name
