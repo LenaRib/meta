@@ -4,21 +4,16 @@
 </head>
 <body>
     <table border = "1">
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>photo</th>
-            <th>metods</th>
-        </tr>
+        
         <tr >
-            {% for result in data%}
+            
             <tr >
                 <td>{{result.id}}</td>
                 <td>{{result.name}}</td>
                 <td>{{result.photo}}</td>
                 <td>{{result.metod}}</td>
             </tr>
-            {% endfor %}
+            
         </tr>
     </table>
 </body>
