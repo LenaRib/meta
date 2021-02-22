@@ -18,6 +18,6 @@ from django.urls import path
 from therapist import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.showTherapist),
+    path('', views.showRecords),
     # path('insert', views.insertTherapist),
 ]

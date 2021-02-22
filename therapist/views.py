@@ -4,30 +4,31 @@ from load import getAirtableRec
 # Create your views here.
 
 
-def showTherapist(request):
-    insertTherapist()
+def showRecords(request):
+    insertRecords()
     showall = Psychotherapists.objects.all()
     return render(request, 'index.html', {"data": showall})
 
 
-def insertTherapist():
-    # load json from Airtable
+def insertRecords():
+    # load records from Airtable
     airtableRecords = getAirtableRec()
-    saveRecord = Psychotherapists()
-    print(saveRecord.name)
-    for row in airtableRecords:
-        saveRecord.id = row['id']
-        fields = row['fields']
-        print(fields)
+    newRecord = Psychotherapists()
+
+    # add to db
+    for record in airtableRecords:
+        recordsDB = Psychotherapists.objects.all()
+        newRecord.id = record['id']
+        fields = record['fields']
         if (fields['Имя']):
-            saveRecord.name = fields['Имя']
-            print(fields['Имя'])
+            newRecord.name = fields['Имя']
         if (fields['Методы']):
-            saveRecord.metod = fields['Методы']
-            print(fields['Методы'])
+            newRecord.metod = fields['Методы']
         if (fields['Фотография']):
-            print('вот Фотография')
             photo = fields['Фотография']
-            saveRecord.photo = photo[0]['url']
-            print(saveRecord.photo)
-    saveRecord.save()
+            newRecord.photo = photo[0]['url']
+        # saveRecord.save()
+
+
+def updateRecord(id, name, photo, metods):
+    updateObj = Psychotherapists.objects.get(id=id)

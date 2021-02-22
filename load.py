@@ -12,7 +12,6 @@ def getAirtableRec():
     # get 100 records from Airtable
     airtable_response = response.json()
     airtable_records = airtable_response['records']
-    print(airtable_records)
     # for record in airtable_records:
     #     airtable_rows.append(record['id'])
     #     airtable_rows.append(record['fields'])
