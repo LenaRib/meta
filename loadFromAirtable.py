@@ -12,10 +12,4 @@ def getAirtableRec():
     # get 100 records from Airtable
     airtable_response = response.json()
     airtable_records = airtable_response['records']
-    # for record in airtable_records:
-    #     airtable_rows.append(record['id'])
-    #     airtable_rows.append(record['fields'])
-    # pd.DataFrame(airtable_rows)
-    # for row in airtable_records:
-    #     print(row['id'])
     return airtable_records

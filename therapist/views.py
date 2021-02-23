@@ -1,23 +1,28 @@
 from django.shortcuts import render
-from therapist.models import Psychotherapists
-from load import getAirtableRec
-# Create your views here.
+from therapist.models import Psychotherapists, Log
+from loadFromAirtable import getAirtableRec
 
 
-def showRecords(request):
-    insertRecords()
-    showall = Psychotherapists.objects.all()
-    return render(request, 'index.html', {"data": showall})
-
-
-def insertRecords():
+def moveAirtableToDB():
     # load records from Airtable
     airtableRecords = getAirtableRec()
-    newRecord = Psychotherapists()
 
+    # load records from DB
+    recordsDB = Psychotherapists.objects.all()
+
+    # check that record from Airtable exist in DB
+    if (recordsDB.count() > 0):
+        print('смотри сколько')
+        print(recordsDB.count())
+    # for record in
+    # if (recordsDB[id] ==)
+    # insertRecords(airtableRecords)
+
+
+def insertRecords(airtableRecords):
+    newRecord = Psychotherapists()
     # add to db
     for record in airtableRecords:
-        recordsDB = Psychotherapists.objects.all()
         newRecord.id = record['id']
         fields = record['fields']
         if (fields['Имя']):
@@ -27,8 +32,24 @@ def insertRecords():
         if (fields['Фотография']):
             photo = fields['Фотография']
             newRecord.photo = photo[0]['url']
-        # saveRecord.save()
+        newRecord.save()
 
 
-def updateRecord(id, name, photo, metods):
-    updateObj = Psychotherapists.objects.get(id=id)
+def updateRecord(id, name, photo, metod):
+    updateRec = Psychotherapists.objects.get(id=id)
+    if (updateRec.name != name):
+        updateRec.name = name
+    updateRec.metod = metod
+    updateRec.photo = photo
+    updateRec.save()
+
+
+def deleteRecord(id):
+    deleteRec = Psychotherapists.objects.get(id=id)
+    deleteRec.delete()
+
+
+def showRecords(request):
+    # insertRecords()
+    showall = Psychotherapists.objects.all()
+    return render(request, 'index.html', {"data": showall})
