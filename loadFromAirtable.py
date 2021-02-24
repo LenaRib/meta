@@ -12,4 +12,5 @@ def getAirtableRec():
     # get 100 records from Airtable
     airtable_response = response.json()
     airtable_records = airtable_response['records']
+    # todo add data preparation (id: {name: , photo: full url, metods: [] }) - id is unique and should be a key
     return airtable_records
