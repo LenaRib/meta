@@ -1,5 +1,5 @@
 # Description
-Profile page for specialists with personal information, the data transfer from Airtable to PostgreSQL with Django ORM.
+One-page app with profile information for medical specialists. The data transfer implemented from Airtable to PostgreSQL with Django ORM. Vue.js on the frontend side.
 
 ## Technical info
 + python 3.9
