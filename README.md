@@ -7,3 +7,4 @@ One-page app with profile information for medical specialists. The data transfer
 + PostgreSQL 13.2
 + npm 7.5.6
 + vue 4.5.11
++ webpack-bundle-tracker 1.0.0-alpha.1
