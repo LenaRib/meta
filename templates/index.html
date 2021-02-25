@@ -1,25 +1,30 @@
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <head>
 
 </head>
 <body>
-    <table border = "1">
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>photo</th>
-            <th>metods</th>
-        </tr>
-        <tr >
-            {% for result in data%}
-            <tr >
-                <td>{{result.id}}</td>
-                <td>{{result.name}}</td>
-                <td>{{result.photo}}</td>
-                <td>{{result.metod}}</td>
+    <div id="app">
+        {% render_bundle 'app' %}
+    </div> 
+        <table border = "1">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>photo</th>
+                <th>metods</th>
             </tr>
-            {% endfor %}
-        </tr>
-    </table>
+            <tr >
+                {% for result in data%}
+                <tr >
+                    <td>{{result.id}}</td>
+                    <td>{{result.name}}</td>
+                    <td>{{result.photo}}</td>
+                    <td>{{result.metod}}</td>
+                </tr>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

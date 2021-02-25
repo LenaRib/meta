@@ -25,8 +25,9 @@ SECRET_KEY = 'eomco204d@vop0z9*8x@zwfi-$kpu2j8#=*7vx40zg11j@f9!*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -38,12 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'therapist',
-    'templates'
+    'templates',
+    'webpack_loader',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -70,6 +75,18 @@ TEMPLATES = [
 ]
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "assets"),
+    os.path.join(BASE_DIR, "vue_frontend/dist"),
+]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'vue_frontend/dist/', 'webpack-stats.json')
+    }
+}
 
 WSGI_APPLICATION = 'baseproject.wsgi.application'
 
@@ -127,8 +144,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+# DB
 TABLE_NAME = 'Psychotherapists'
 BASE_ID = 'apprk0Ir5niZ9pPNN'
 API_KEY = 'keytSzf5K1JKexUfW'
