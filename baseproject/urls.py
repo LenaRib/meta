@@ -24,7 +24,6 @@ router.register('therapist', TherapistViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.showRecords),
+    # path('', views.showRecords),
     path('', include(router.urls))
-    # path('insert', views.insertTherapist),
 ]

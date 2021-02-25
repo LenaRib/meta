@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
-import requests
-from baseproject.settings import API_KEY, URL
 from therapist.models import Psychotherapists, Log
+from baseproject.settings import API_KEY, URL
+import requests
+import django
+django.setup()
+
 
 headers = {'Authorization': 'Bearer ' + API_KEY}
 params = ()

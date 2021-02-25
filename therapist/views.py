@@ -8,13 +8,10 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class TherapistViewSet(viewsets.ModelViewSet):
+    moveAirtableToDB()
     authentication_classes = (BasicAuthentication,)
     permission_classes = (IsAuthenticated,)
     queryset = Psychotherapists.objects.all()
     serializer_class = TherapistSerializer
 
-
-def showRecords(request):
-    moveAirtableToDB()
-    showall = Psychotherapists.objects.all()
-    return render(request, 'vue.html', {"data": showall})
+#    return render(request, 'vue.html', {"data": showall})
